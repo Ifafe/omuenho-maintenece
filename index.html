@@ -4,202 +4,427 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>OMUENHO - Coming Soon</title>
+    <title>OMUENHO - Em Breve</title>
     <meta name="description"
         content="OMUENHO - Engenharia, Saneamento & Meio Ambiente. A nossa plataforma está a ser renovada. Voltamos em breve!" />
-    <meta property="og:title" content="OMUENHO - Coming Soon" />
+    <meta property="og:title" content="OMUENHO - Em Breve" />
     <meta property="og:description"
         content="A nossa plataforma está a ser renovada para lhe oferecer uma experiência ainda mais impactante." />
     <meta property="og:image" content="logo.png" />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/png" href="logo.png" />
     <link rel="apple-touch-icon" href="logo.png" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&amp;family=Inter:wght@300;400;500&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#22c55e",
-                        "dark-base": "#0a1a0f",
-                        "deep-green": "#0f2d17",
-                    },
-                    fontFamily: {
-                        "outfit": ["Outfit", "sans-serif"],
-                        "inter": ["Inter", "sans-serif"]
-                    }
-                },
-            },
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .glass-card {
-                background: rgba(255, 255, 255, 0.03);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #071510;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ── Animated background ── */
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(110px);
+            pointer-events: none;
+            animation: float 12s ease-in-out infinite alternate;
+        }
+
+        .bg-orb-1 {
+            width: 55vw;
+            height: 55vw;
+            background: radial-gradient(circle, rgba(22, 163, 74, .22) 0%, transparent 70%);
+            top: -15%;
+            left: -15%;
+            animation-delay: 0s;
+        }
+
+        .bg-orb-2 {
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, rgba(5, 150, 105, .14) 0%, transparent 70%);
+            bottom: -15%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        .bg-orb-3 {
+            width: 30vw;
+            height: 30vw;
+            background: radial-gradient(circle, rgba(132, 204, 22, .08) 0%, transparent 70%);
+            top: 40%;
+            left: 55%;
+            animation-delay: -8s;
+        }
+
+        .dot-grid {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(34, 197, 94, .12) 1px, transparent 1px);
+            background-size: 38px 38px;
+            animation: fadeDots 4s ease-in forwards;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
             }
-            .text-glow {
-                text-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+
+            100% {
+                transform: translate(30px, 20px) scale(1.08);
             }
-            .green-glow {
-                box-shadow: 0 0 18px rgba(34, 197, 94, 0.45);
+        }
+
+        @keyframes fadeDots {
+            from {
+                opacity: 0;
             }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ── Card wrapper ── */
+        .card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, .03);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 28px;
+            padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 6vw, 4rem);
+            max-width: 680px;
+            width: calc(100% - 2rem);
+            text-align: center;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .5), 0 0 0 1px rgba(34, 197, 94, .06);
+            animation: riseIn .8s cubic-bezier(.22, 1, .36, 1) both;
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(32px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ── Logo ── */
+        .logo {
+            height: clamp(52px, 8vw, 72px);
+            width: auto;
+            margin: 0 auto 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 12px rgba(34, 197, 94, .3));
+            animation: logoPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 10px rgba(34, 197, 94, .25));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 22px rgba(34, 197, 94, .55));
+            }
+        }
+
+        /* ── Headline ── */
+        .headline {
+            font-size: clamp(1.6rem, 4.5vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: #fff;
+            letter-spacing: -.02em;
+            margin-bottom: .75rem;
+        }
+
+        .headline span {
+            background: linear-gradient(135deg, #4ade80, #22c55e, #86efac);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+        }
+
+        .sub {
+            font-size: clamp(.9rem, 2vw, 1.05rem);
+            color: #94a3b8;
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .sub strong {
+            color: rgba(134, 239, 172, .85);
+            font-weight: 600;
+        }
+
+        /* ── Countdown ── */
+        .timer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: .75rem;
+            margin-bottom: 2rem;
+        }
+
+        .timer-cell {
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(34, 197, 94, .12);
+            border-radius: 16px;
+            padding: .9rem .5rem;
+            transition: transform .2s, border-color .2s;
+        }
+
+        .timer-cell:hover {
+            transform: translateY(-4px);
+            border-color: rgba(34, 197, 94, .35);
+        }
+
+        .timer-num {
+            display: block;
+            font-size: clamp(1.9rem, 5vw, 2.8rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1;
+            letter-spacing: -.03em;
+            transition: transform .15s;
+        }
+
+        .timer-num.bump {
+            transform: scale(1.12);
+        }
+
+        .timer-label {
+            display: block;
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            color: #4ade80;
+            font-weight: 600;
+            margin-top: .35rem;
+        }
+
+        /* ── Form ── */
+        .form-row {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        .form-row input {
+            flex: 1 1 0;
+            min-width: 0;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 50px;
+            padding: .8rem 1.4rem;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: .95rem;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .form-row input::placeholder {
+            color: #475569;
+        }
+
+        .form-row input:focus {
+            border-color: rgba(34, 197, 94, .5);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, .1);
+        }
+
+        .form-row button {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            border-radius: 50px;
+            padding: .8rem 1.6rem;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: .95rem;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: opacity .2s, transform .15s, box-shadow .2s;
+            box-shadow: 0 0 18px rgba(34, 197, 94, .35);
+        }
+
+        .form-row button:hover {
+            opacity: .9;
+            transform: translateY(-2px);
+            box-shadow: 0 0 28px rgba(34, 197, 94, .5);
+        }
+
+        .form-row button:active {
+            transform: scale(.96);
+        }
+
+        /* ── Footer ── */
+        .foot {
+            margin-top: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .foot span {
+            font-size: .78rem;
+            color: #334155;
+        }
+
+        .foot a {
+            font-size: .78rem;
+            color: #475569;
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .foot a:hover {
+            color: #4ade80;
+        }
+
+        /* launch message */
+        #launch-msg {
+            display: none;
         }
     </style>
 </head>
 
-<body class="font-inter antialiased text-slate-200 min-h-screen overflow-x-hidden" style="background-color:#0a1a0f;">
-    <div class="fixed inset-0 z-0 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-green-900/25 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-emerald-900/15 rounded-full blur-[120px]">
+<body>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+    <div class="dot-grid"></div>
+
+    <div class="card">
+        <img src="logo.png" alt="OMUENHO – Engenharia, Saneamento & Meio Ambiente" class="logo"
+            onerror="this.style.display='none'" />
+
+        <h1 class="headline">
+            Algo incrível está a <span>crescer</span>
+        </h1>
+
+        <p class="sub">
+            A nossa plataforma está a ser renovada para lhe oferecer uma experiência ainda mais impactante.
+            <strong>Voltamos em breve!</strong>
+        </p>
+
+        <!-- Countdown -->
+        <div class="timer">
+            <div class="timer-cell">
+                <span id="cd-days" class="timer-num">20</span>
+                <span class="timer-label">Dias</span>
+            </div>
+            <div class="timer-cell">
+                <span id="cd-hours" class="timer-num">00</span>
+                <span class="timer-label">Horas</span>
+            </div>
+            <div class="timer-cell">
+                <span id="cd-minutes" class="timer-num">00</span>
+                <span class="timer-label">Minutos</span>
+            </div>
+            <div class="timer-cell">
+                <span id="cd-seconds" class="timer-num">00</span>
+                <span class="timer-label">Segundos</span>
+            </div>
         </div>
-        <div class="absolute top-[40%] left-[50%] w-[40%] h-[40%] bg-lime-900/10 rounded-full blur-[100px]"></div>
-        <div class="absolute inset-0"
-            style="background: radial-gradient(circle at center, transparent 0%, rgba(10,26,15,1) 100%);"></div>
-        <div class="absolute inset-0 opacity-15"
-            style="background-image: radial-gradient(#22c55e 0.5px, transparent 0.5px); background-size: 40px 40px;">
+
+        <!-- Email form -->
+        <form class="form-row" onsubmit="handleSub(event)">
+            <input type="email" id="sub-email" placeholder="O seu email profissional" required />
+            <button type="submit">Subscrever &#8594;</button>
+        </form>
+
+        <p id="launch-msg" style="color:#4ade80;font-weight:600;margin-top:1rem;">
+            🌱 Estamos no ar! Bem-vindo à OMUENHO.
+        </p>
+
+        <div class="foot">
+            <span>© 2026 OMUENHO</span>
+            <a href="#">Privacidade</a>
+            <a href="mailto:geral@omuenho.ao">Contacto</a>
         </div>
-    </div>
-    <div class="relative z-10 flex flex-col min-h-screen items-center justify-between py-12 px-6">
-        <header class="w-full flex justify-center mb-8">
-            <div class="flex items-center gap-3 group cursor-default">
-                <img src="logo.png" alt="OMUENHO - Engenharia, Saneamento & Meio Ambiente"
-                    class="h-16 w-auto drop-shadow-lg transition-transform group-hover:scale-105 duration-300"
-                    onerror="this.style.display='none'" />
-            </div>
-        </header>
-        <main class="w-full max-w-4xl flex flex-col items-center text-center">
-            <div class="space-y-6 mb-12">
-                <h1
-                    class="font-outfit text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight">
-                    OMUENHO: Transformando Vidas <br class="hidden md:block" />
-                    <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-400 to-lime-400 text-glow">
-                        através da Inovação Social
-                    </span>
-                </h1>
-                <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-                    A nossa plataforma está a ser renovada para lhe oferecer uma experiência ainda mais impactante.
-                    <span class="text-emerald-400/80 font-medium">Voltamos em breve!</span>
-                </p>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-16 w-full max-w-2xl">
-                <div
-                    class="glass-card rounded-2xl p-6 flex flex-col items-center transition-transform hover:scale-105 duration-300">
-                    <span id="cd-days" class="font-outfit text-4xl md:text-5xl font-extrabold text-white">20</span>
-                    <span class="text-xs uppercase tracking-[0.2em] text-emerald-400 font-semibold mt-2">Dias</span>
-                </div>
-                <div
-                    class="glass-card rounded-2xl p-6 flex flex-col items-center transition-transform hover:scale-105 duration-300">
-                    <span id="cd-hours" class="font-outfit text-4xl md:text-5xl font-extrabold text-white">00</span>
-                    <span class="text-xs uppercase tracking-[0.2em] text-emerald-400 font-semibold mt-2">Horas</span>
-                </div>
-                <div
-                    class="glass-card rounded-2xl p-6 flex flex-col items-center transition-transform hover:scale-105 duration-300">
-                    <span id="cd-minutes" class="font-outfit text-4xl md:text-5xl font-extrabold text-white">00</span>
-                    <span class="text-xs uppercase tracking-[0.2em] text-emerald-400 font-semibold mt-2">Minutos</span>
-                </div>
-                <div
-                    class="glass-card rounded-2xl p-6 flex flex-col items-center transition-transform hover:scale-105 duration-300 border-emerald-500/30">
-                    <span id="cd-seconds" class="font-outfit text-4xl md:text-5xl font-extrabold text-white">00</span>
-                    <span class="text-xs uppercase tracking-[0.2em] text-emerald-400 font-semibold mt-2">Segundos</span>
-                </div>
-            </div>
-            <div class="w-full max-w-md">
-                <p class="text-sm font-medium text-slate-500 uppercase tracking-widest mb-4">Stay Updated</p>
-                <form class="relative group" onsubmit="return false">
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <input
-                            class="flex-grow bg-white/5 border border-white/10 rounded-full px-6 py-4 focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 outline-none text-white placeholder:text-slate-600 transition-all"
-                            placeholder="O seu email profissional" type="email" />
-                        <button
-                            class="bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-4 rounded-full green-glow transition-all active:scale-95 flex items-center justify-center gap-2"
-                            type="submit">
-                            <span>Subscrever</span>
-                            <span class="material-symbols-outlined text-lg">send</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </main>
-        <footer class="w-full max-w-7xl flex flex-col items-center gap-8 border-t border-white/5 pt-12">
-            <img src="logo.png" alt="OMUENHO Logo"
-                class="h-10 w-auto opacity-40 hover:opacity-70 transition-opacity duration-300"
-                onerror="this.style.display='none'" />
-            <div class="flex gap-8">
-                <a class="text-slate-500 hover:text-emerald-400 transition-all hover:-translate-y-1" href="#">
-                    <span class="material-symbols-outlined text-2xl">language</span>
-                </a>
-                <a class="text-slate-500 hover:text-emerald-400 transition-all hover:-translate-y-1" href="#">
-                    <span class="material-symbols-outlined text-2xl">diversity_3</span>
-                </a>
-                <a class="text-slate-500 hover:text-emerald-400 transition-all hover:-translate-y-1" href="#">
-                    <span class="material-symbols-outlined text-2xl">mail</span>
-                </a>
-                <a class="text-slate-500 hover:text-emerald-400 transition-all hover:-translate-y-1" href="#">
-                    <span class="material-symbols-outlined text-2xl">eco</span>
-                </a>
-            </div>
-            <div class="flex flex-col md:flex-row items-center justify-between w-full text-sm text-slate-500 gap-4">
-                <p>© 2026 OMUENHO. Todos os direitos reservados.</p>
-                <div class="flex gap-6">
-                    <a class="hover:text-slate-300 transition-colors" href="#">Privacidade</a>
-                    <a class="hover:text-slate-300 transition-colors" href="#">Contacto</a>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script>
-        // Countdown target: 15 March 2026 at 17:00 local time
-        const LAUNCH_DATE = new Date('2026-03-15T17:00:00+01:00');
+        // ── Countdown to 15 March 2026 17:00 WAT (UTC+1) ──
+        const LAUNCH = new Date('2026-03-15T17:00:00+01:00');
 
-        const elDays = document.getElementById('cd-days');
-        const elHours = document.getElementById('cd-hours');
-        const elMinutes = document.getElementById('cd-minutes');
-        const elSeconds = document.getElementById('cd-seconds');
+        const els = {
+            days: document.getElementById('cd-days'),
+            hours: document.getElementById('cd-hours'),
+            minutes: document.getElementById('cd-minutes'),
+            seconds: document.getElementById('cd-seconds'),
+        };
 
         function pad(n) { return String(n).padStart(2, '0'); }
 
-        function tick() {
-            const now = new Date();
-            const diff = LAUNCH_DATE - now;
-
-            if (diff <= 0) {
-                elDays.textContent = '00';
-                elHours.textContent = '00';
-                elMinutes.textContent = '00';
-                elSeconds.textContent = '00';
-                // Show launch message
-                const msg = document.querySelector('p.text-slate-400');
-                if (msg) msg.innerHTML = '<span class="text-emerald-400 font-semibold">🌱 Estamos no ar! Bem-vindo à OMUENHO.</span>';
-                return;
-            }
-
-            const totalSec = Math.floor(diff / 1000);
-            const days = Math.floor(totalSec / 86400);
-            const hours = Math.floor((totalSec % 86400) / 3600);
-            const minutes = Math.floor((totalSec % 3600) / 60);
-            const seconds = totalSec % 60;
-
-            elDays.textContent = pad(days);
-            elHours.textContent = pad(hours);
-            elMinutes.textContent = pad(minutes);
-            elSeconds.textContent = pad(seconds);
+        function bump(el) {
+            el.classList.add('bump');
+            setTimeout(() => el.classList.remove('bump'), 150);
         }
 
-        tick();                        // run immediately
-        setInterval(tick, 1000);      // update every second
+        let prev = {};
+        function tick() {
+            const diff = LAUNCH - Date.now();
+            if (diff <= 0) {
+                ['days', 'hours', 'minutes', 'seconds'].forEach(k => els[k].textContent = '00');
+                document.getElementById('launch-msg').style.display = 'block';
+                return;
+            }
+            const s = Math.floor(diff / 1000);
+            const val = {
+                days: Math.floor(s / 86400),
+                hours: Math.floor((s % 86400) / 3600),
+                minutes: Math.floor((s % 3600) / 60),
+                seconds: s % 60,
+            };
+            ['days', 'hours', 'minutes', 'seconds'].forEach(k => {
+                const str = pad(val[k]);
+                if (str !== prev[k]) { els[k].textContent = str; bump(els[k]); }
+                prev[k] = str;
+            });
+        }
+
+        tick();
+        setInterval(tick, 1000);
+
+        // ── Subscription ──
+        function handleSub(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.textContent = '✓ Subscrito!';
+            btn.style.background = 'linear-gradient(135deg,#16a34a,#15803d)';
+            btn.disabled = true;
+            document.getElementById('sub-email').value = '';
+        }
     </script>
 </body>
 
