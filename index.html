@@ -341,6 +341,20 @@
             font-size: .75rem;
             color: #334155;
             margin-top: .2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .dev-link {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .dev-link:hover {
+            color: #4ade80;
         }
 
         /* launch message */
@@ -391,7 +405,7 @@
 
         <!-- Email form -->
         <form class="form-row" action="https://formspree.io/f/xnjboben" method="POST" onsubmit="handleSub(event)">
-            <input type="email" name="email" id="sub-email" placeholder="O seu email profissional" required />
+            <input type="email" name="email" id="sub-email" placeholder="Seja o primeiro a saber..." required />
             <button type="submit" id="sub-btn">Subscrever &#8594;</button>
         </form>
 
@@ -423,7 +437,11 @@
                 <span>|</span>
                 <a href="mailto:news@omuenho.com">news@omuenho.com</a>
             </div>
-            <div class="foot-copy">© 2026 OMUENHO. Todos os direitos reservados.</div>
+            <div class="foot-copy">
+                <span>© 2026 OMUENHO. Todos os direitos reservados.</span>
+                <span>Desenvolvido por <a href="https://www.linkedin.com/in/domingos-manuel-ifafe-88b9aa2b1"
+                        target="_blank" class="dev-link">DIfafe</a></span>
+            </div>
         </div>
     </div>
 
