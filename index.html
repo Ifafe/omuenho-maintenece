@@ -390,9 +390,9 @@
         </div>
 
         <!-- Email form -->
-        <form class="form-row" onsubmit="handleSub(event)">
-            <input type="email" id="sub-email" placeholder="O seu email profissional" required />
-            <button type="submit">Subscrever &#8594;</button>
+        <form class="form-row" action="https://formspree.io/f/mqaejgzg" method="POST" onsubmit="handleSub(event)">
+            <input type="email" name="email" id="sub-email" placeholder="O seu email profissional" required />
+            <button type="submit" id="sub-btn">Subscrever &#8594;</button>
         </form>
 
         <p id="launch-msg" style="color:#4ade80;font-weight:600;margin-top:1rem;">
@@ -471,13 +471,35 @@
         setInterval(tick, 1000);
 
         // ── Subscription ──
-        function handleSub(e) {
+        async function handleSub(e) {
             e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.textContent = '✓ Subscrito!';
-            btn.style.background = 'linear-gradient(135deg,#16a34a,#15803d)';
+            const form = e.target;
+            const btn = document.getElementById('sub-btn');
+            const email = document.getElementById('sub-email').value;
+
+            const originalText = btn.textContent;
+            btn.textContent = 'Enviando...';
             btn.disabled = true;
-            document.getElementById('sub-email').value = '';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(form)
+                });
+
+                if (response.ok) {
+                    btn.textContent = '✓ Subscrito!';
+                    btn.style.background = 'linear-gradient(135deg,#16a34a,#15803d)';
+                    document.getElementById('sub-email').value = '';
+                } else {
+                    throw new Error();
+                }
+            } catch (err) {
+                btn.textContent = 'Erro. Tente de novo?';
+                btn.disabled = false;
+                setTimeout(() => { if (!btn.disabled) btn.textContent = originalText; }, 3000);
+            }
         }
     </script>
 </body>
